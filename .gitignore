@@ -1,7 +1,5 @@
 *.weights
 *.bin
 *.caffemodel
-*.txt
 *.exe
-*.so
 *.mp4

@@ -15,17 +15,18 @@ struct BBox {
 
 int main(int argc, char** argv)
 {
-	Net<float> net(argv[1]);
-	net.CopyTrainedLayersFrom(argv[2]);
+	
+	Net<float> net("models/faceboxes_deploy.prototxt");
+	net.CopyTrainedLayersFrom("models/FaceBoxes_1024x1024.caffemodel");
 
 	
-	//Mat img = imread(argv[3]);
-cv::VideoCapture cam(argv[3]);
-cv::Mat img;
+	Mat img = imread(argv[1]);
+// cv::VideoCapture cam(argv[1]);
+// cv::Mat img;
 
-while (1) {
-cam >>img;
-if (img.empty()) break;	
+// while (1) {
+// cam >>img;
+// if (img.empty()) break;	
 	
 	
 	const float kScoreThreshold = 0.1f;
@@ -97,7 +98,7 @@ if (img.empty()) break;
 
 	//cv::imwrite("faceboxs-result.jpg", img);
 	cv::imshow("SSD", img);
-	cv::waitKey(30);
-}
+	cv::waitKey(3000);
+//}
 	return 0;
 }
