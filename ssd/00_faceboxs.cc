@@ -86,6 +86,7 @@ int main(int argc, char** argv)
 			bbox.score = result_data[2];
 			bbox.label = static_cast<int>(result_data[1]);
 			detections.push_back(bbox);
+			LOG(INFO) << bbox.label << " " << bbox.x1 << " " << bbox.y1 << " " << bbox.x2-bbox.x1 << " " << bbox.y2-bbox.y1;
 		}
 		result_data += 7;
 	}
@@ -98,7 +99,7 @@ int main(int argc, char** argv)
 
 	//cv::imwrite("faceboxs-result.jpg", img);
 	cv::imshow("SSD", img);
-	cv::waitKey(3000);
+	cv::waitKey();
 //}
 	return 0;
 }

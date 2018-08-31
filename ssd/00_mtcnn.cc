@@ -320,7 +320,7 @@ void Detect(const Mat& image, vector<FaceInfo>& faceInfo, int minSize, double* t
 		int ws = std::ceil(height*scale);
 		int hs = std::ceil(width*scale);
 
-		cv::resize(sample_single, resized, cv::Size(ws, hs), 0, 0, cv::INTER_AREA);
+		//cv::resize(sample_single, resized, cv::Size(ws, hs), 0, 0, cv::INTER_AREA);
 		cv::resize(sample_single, resized, cv::Size(ws, hs), 0, 0, cv::INTER_NEAREST);
 		resized.convertTo(resized, CV_32FC3, 0.0078125, -127.5*0.0078125);
 
@@ -421,13 +421,13 @@ int main(int argc, char *argv[])
 	double threshold[3] = { 0.7,0.8,0.7 };
 	double factor = 0.709;
 	int minSize = 80;
-	Mat image = cv::imread(argv[1]);
-// VideoCapture cam(argv[1]);
-// Mat image;
+	//Mat image = cv::imread(argv[1]);
+VideoCapture cam(argv[1]);
+Mat image;
 
-// while (1) {
-// cam >> image;
-// if (image.empty()) break;
+while (1) {
+cam >> image;
+if (image.empty()) break;
 
 	vector<FaceInfo> faceInfo;
 
@@ -449,8 +449,8 @@ int main(int argc, char *argv[])
 			cv::circle(image, cv::Point(facePts.y[j], facePts.x[j]), 1, cv::Scalar(255, 255, 0), 2);
 	}
 	cv::imshow("MTCNN", image);
-	cv::imwrite("result.jpg", image);
-	//cv::waitKey(3000);
-//}
+	//cv::imwrite("result.jpg", image);
+	cv::waitKey(30);
+}
 	return 0;
 }

@@ -21,14 +21,14 @@ int main(int argc, char** argv)
 	net.CopyTrainedLayersFrom(argv[2]);
 	//Net<float> net("models/squeezenet_ssd_voc_deploy.prototxt");
 	//net.CopyTrainedLayersFrom("models/squeezenet_iter_74000.caffemodel");
-	Mat img = imread(argv[3]);
+	//Mat img = imread(argv[3]);
 	
-// VideoCapture cam(argv[3]);
-// Mat img;
+VideoCapture cam(argv[3]);
+Mat img;
 
-// while (1) {
-// cam >> img;
-// if (img.empty()) break;
+while (1) {
+cam >> img;
+if (img.empty()) break;
 
 
 	const float kScoreThreshold = 0.01f;
@@ -108,8 +108,8 @@ int main(int argc, char** argv)
 
 	//cv::imwrite("ssd-result.jpg", img);
 	cv::imshow("result", img);
-	cv::waitKey();
+	cv::waitKey(30);
 
-//}
+}
 	return 0;
 }

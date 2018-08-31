@@ -19,12 +19,12 @@ int main(int argc, char** argv)
 	net.CopyTrainedLayersFrom(argv[2]);
 
 	
-	Mat img = imread(argv[3]);
-// VideoCapture cam(argv[3]);
-// Mat img;
-// while (1) {
-// cam >> img;
-// if (img.empty()) break;
+	//Mat img = imread(argv[3]);
+VideoCapture cam(argv[3]);
+Mat img;
+while (1) {
+cam >> img;
+if (img.empty()) break;
 	
 	
 	const float kScoreThreshold = 0.f;
@@ -100,8 +100,8 @@ int main(int argc, char** argv)
 
 	//cv::imwrite("faceboxs-result.jpg", img);
 	cv::imshow("SSD", img);
-	cv::waitKey();
-//}
+	cv::waitKey(30);
+}
 
 	return 0;
 }
